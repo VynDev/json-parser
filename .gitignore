@@ -1,0 +1,7 @@
+*.make
+Makefile
+obj
+lib
+bin
+premake5
+helper_start.sh
