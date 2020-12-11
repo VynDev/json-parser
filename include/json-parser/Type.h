@@ -9,7 +9,7 @@ namespace JSON {
 
         public:
 
-        virtual std::string ToString(int indentation = 0) = 0;
+        virtual std::string ToString(int indentation = 0) {return "TypeUnknown";}
 
         std::string GetTabString(int count) const {
             std::string returnValue = "";

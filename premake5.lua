@@ -15,6 +15,15 @@ solution "json-parser"
 		configuration "Shared"
 			kind "SharedLib"
 
+	project "basics"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	includedirs {"include"}
+	files {"examples/basics.cpp",}
+	links {"json-parser"}
+	targetdir "bin"
+
 newaction {
 	trigger = "clean",
 	description = "clean the software",

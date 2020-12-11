@@ -1,5 +1,6 @@
 #pragma once
 #include "Type.h"
+#include "Exception.h"
 
 namespace JSON {
     class Array;
@@ -8,13 +9,15 @@ namespace JSON {
 
         public:
 
+        Object() {};
+        Object(const std::string& filename);
+
         virtual std::string ToString(int indentation = 0);
 
         void AddField(const std::string& name, const char* value);
         void AddField(const std::string& name, const std::string& value);
         void AddField(const std::string& name, double value);
         void AddField(const std::string& name, bool value);
-
         void AddField(const std::string& name, const Object &object);
         
 
@@ -22,9 +25,13 @@ namespace JSON {
         Array &AddArray(const std::string& name);
 
         void Save(const std::string& filename);
+        bool IsValid() const {return bIsValid;}
+        std::string GetError() const {return error;}
 
         private:
 
+        bool bIsValid = true;
+        std::string error;
         const std::map<std::string, std::unique_ptr<Type>> &GetMap() const;
         std::map<std::string, std::unique_ptr<Type>> fields;
     };

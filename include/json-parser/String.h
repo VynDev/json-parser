@@ -6,7 +6,7 @@ namespace JSON {
 
         public:
 
-        virtual std::string ToString(int indentation = 0);
+        virtual std::string ToString(int indentation = 0) override;
 
         String(const std::string& value);
 

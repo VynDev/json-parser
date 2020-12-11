@@ -6,10 +6,24 @@
 #include "json-parser/Bool.h"
 #include "json-parser/Number.h"
 #include "json-parser/Array.h"
+#include "json-parser/Parser.h"
+#include "json-parser/Exception.h"
 
 using namespace std;
 
 namespace JSON {
+
+    Object::Object(const std::string& filename) {
+        Parser parser(filename);
+
+        try {
+            parser.ParseObject(this);
+        }
+        catch (const Exception& e) {
+            bIsValid = false;
+            error = e.GetReason();
+        }
+    }
 
     void Object::AddField(const string& name, const char* value) {
         AddField(name, static_cast<string>(value));
@@ -58,18 +72,6 @@ namespace JSON {
     Array &Object::AddArray(const string& name) {
         auto pair = fields.insert(std::make_pair(name, make_unique<Array>()));
         return *(static_cast<Array*>(pair.first->second.get()));
-    }
-
-
-
-
-
-
-    Object Load(const std::string& filename) {
-
-
-        Object root;
-        return root;
     }
 }
 

@@ -1,0 +1,16 @@
+{
+    "stringValue": "This is a string",
+    "number": 42,
+    "numberButNegative": -42,
+    "numberButNegativeAndDecimal": -42.5469,
+    "numberButJustDecimal": 42.5469,
+    "boolean": true,
+    "booleanButFalse": false,
+    "thisIsAnObject": {
+        "Hello": "World"
+    },
+    "thisIsAnArray": [
+        "hellobutinlowercase",
+        "world"
+    ]
+}
