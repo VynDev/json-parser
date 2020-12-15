@@ -21,8 +21,6 @@ namespace JSON {
             jsonString += line + "\n";
         }
         file.close();
-
-        //cout << jsonString << endl;
     }
 
     void Parser::SkipWhiteSpaces() {
@@ -52,12 +50,10 @@ namespace JSON {
             object->AddField(key, ParseNumber());
         else if (CurrentChar() == 't' || CurrentChar() == 'f')
             object->AddField(key, ParseBool());
-        else if (CurrentChar() == '{') {
+        else if (CurrentChar() == '{')
             ParseObject(&object->AddObject(key));
-        }
-        else if (CurrentChar() == '[') {    
+        else if (CurrentChar() == '[')
             ParseArray(&object->AddArray(key));
-        }
         else
             throw Exception(ERRORS::VALUE_EXPECTED, currentLine);
             

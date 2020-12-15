@@ -4,4 +4,6 @@ obj
 lib
 bin
 premake5
+
 helper_start.sh
+examples/basics_modified.json

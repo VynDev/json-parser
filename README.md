@@ -23,8 +23,28 @@ json.Save("examples/basics_modified.json");
 
 ## Intallation
 
-[TODO]
+### Requirements
+
+- g++
+- premake5
+- make
+
+### Steps (Linux)
+
+```
+premake5 gmake
+make
+```
+You now have the lib at bin/libjson-parser.a.  
+You can also run the tests:
+```
+bin/tests
+```
 
 ## Documentation
 
+You have the documentation as comments into the headers, and the usage from the examples. It's a very simple json
+library so there is a quick but almost complete overview of the function:
+```cpp
 [TODO]
+```
