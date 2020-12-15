@@ -20,6 +20,12 @@ namespace JSON {
         Object &AddObject();
         Array &AddArray();
 
+        protected:
+
+        void *GetValuePointer() override {
+            return this;
+        }
+
         private:
 
         std::vector<std::unique_ptr<Type>> elements;

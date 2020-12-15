@@ -4,7 +4,7 @@ using namespace std;
 
 namespace JSON {
     Number::Number(double value) : value(value) {
-
+        this->value = value;
     }
 
     void Number::SetValue(double value) {
@@ -12,10 +12,10 @@ namespace JSON {
     }
 
     double Number::GetValue() const {
-        return value;
+        return this->value;
     }
 
     std::string Number::ToString(int indentation) {
-        return to_string(value);
+        return to_string(this->value);
     }
 }

@@ -20,13 +20,22 @@ namespace JSON {
         void AddField(const std::string& name, bool value);
         void AddField(const std::string& name, const Object &object);
         
-
         Object &AddObject(const std::string& name);
         Array &AddArray(const std::string& name);
 
         void Save(const std::string& filename);
         bool IsValid() const {return bIsValid;}
         std::string GetError() const {return error;}
+
+        Type& operator[] (const std::string key) {
+            return *fields[key].get();
+        }
+
+        protected:
+
+        void *GetValuePointer() override {
+            return this;
+        }
 
         private:
 

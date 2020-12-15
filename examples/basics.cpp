@@ -6,7 +6,6 @@ using namespace std;
 int main()
 {
 	/* Load a json object */
-
 	JSON::Object json("examples/basics.json");
 	if (json.IsValid())
 		cout << json.ToString() << endl;
@@ -16,13 +15,10 @@ int main()
 	}
 
 	/* Modify a json object */
-
-	// json["number"] = json["number"].HasNumber() + 1; // TODO
+	json["number"].AsNumber() = json["number"].AsNumber() + 1;
 		
 	/* Save a json object */
-
-	json.Save("examples/basics_saved.json");
-	
+	json.Save("examples/basics_modified.json");
 
 	return 0;
 }

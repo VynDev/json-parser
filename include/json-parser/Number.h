@@ -13,6 +13,12 @@ namespace JSON {
         void SetValue(double value);
         double GetValue() const;
 
+        protected:
+
+        void *GetValuePointer() override {
+            return &value;
+        }
+
         private:
 
         double value;

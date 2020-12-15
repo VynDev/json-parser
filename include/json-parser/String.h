@@ -13,6 +13,12 @@ namespace JSON {
         void SetValue(const std::string& value);
         const std::string &GetValue() const;
 
+        protected:
+
+        void *GetValuePointer() override {
+            return &value;
+        }
+
         private:
 
         std::string value;

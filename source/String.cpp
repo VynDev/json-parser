@@ -16,6 +16,6 @@ namespace JSON {
     }
 
     const std::string& String::GetValue() const {
-        return value;
+        return this->value;
     }
 }
