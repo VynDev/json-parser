@@ -23,4 +23,12 @@ namespace JSON {
         out << std::fixed << this->value;
         return out.str();
     }
+
+    void *Number::GetValuePointer() {
+        return &value;
+    }
+
+    bool Number::IsNumber() const {
+        return true;
+    }
 }

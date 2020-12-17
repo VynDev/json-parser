@@ -18,4 +18,12 @@ namespace JSON {
     const std::string& String::GetValue() const {
         return this->value;
     }
+
+    void *String::GetValuePointer() {
+        return &value;
+    }
+
+    bool String::IsString() const {
+        return true;
+    }
 }

@@ -13,6 +13,9 @@ namespace JSON {
         Object(const std::string& filename);
 
         virtual std::string ToString(int indentation = 0);
+        virtual bool IsObject() const override;
+
+        bool HasKey(const std::string& key) const;
 
         void AddField(const std::string& name, const char* value);
         void AddField(const std::string& name, const std::string& value);
@@ -28,15 +31,11 @@ namespace JSON {
         bool IsValid() const {return bIsValid;}
         std::string GetError() const {return error;}
 
-        Type& operator[] (const std::string key) {
-            return *fields[key].get();
-        }
+        Type& operator[] (const std::string key);
 
         protected:
 
-        void *GetValuePointer() override {
-            return this;
-        }
+        virtual void *GetValuePointer() override;
 
         private:
 

@@ -77,5 +77,20 @@ namespace JSON {
         auto pair = fields.insert(std::make_pair(name, make_unique<Array>()));
         return *(static_cast<Array*>(pair.first->second.get()));
     }
-}
 
+    void *Object::GetValuePointer() {
+        return this;
+    }
+
+    bool Object::IsObject() const {
+        return true;
+    }
+
+    Type& Object::operator[] (const std::string key) {
+        return *fields[key].get();
+    }
+
+    bool Object::HasKey(const std::string& key) const {
+        return fields.find(key) != fields.end();
+    }
+}

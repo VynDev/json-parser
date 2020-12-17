@@ -1,9 +1,13 @@
 #include "json-parser/Type.h"
 
 namespace JSON {
-    std::string Type::ToString(int indentation) {
-        return "TypeUnknown";
-    }
+    
+    std::string Type::ToString(int indentation) {return "TypeUnknown";}
+    bool Type::IsString() const {return false;}
+    bool Type::IsNumber() const {return false;}
+    bool Type::IsBool() const {return false;}
+    bool Type::IsObject() const {return false;}
+    bool Type::IsArray() const {return false;}
 
     std::string& Type::AsString() {
         return *static_cast<std::string *>(GetValuePointer());

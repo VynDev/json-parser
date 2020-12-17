@@ -10,6 +10,7 @@ namespace JSON {
         public:
 
         virtual std::string ToString(int indentation = 0);
+        virtual bool IsArray() const override;
 
         void AddElement(const char* value);
         void AddElement(const std::string& value);
@@ -22,9 +23,7 @@ namespace JSON {
 
         protected:
 
-        void *GetValuePointer() override {
-            return this;
-        }
+        virtual void *GetValuePointer() override;
 
         private:
 

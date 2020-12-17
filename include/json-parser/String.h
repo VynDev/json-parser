@@ -6,18 +6,17 @@ namespace JSON {
 
         public:
 
-        virtual std::string ToString(int indentation = 0) override;
-
         String(const std::string& value);
+
+        virtual std::string ToString(int indentation = 0) override;
+        virtual bool IsString() const override;
 
         void SetValue(const std::string& value);
         const std::string &GetValue() const;
 
         protected:
 
-        void *GetValuePointer() override {
-            return &value;
-        }
+        virtual void *GetValuePointer() override;
 
         private:
 

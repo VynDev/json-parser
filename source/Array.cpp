@@ -45,4 +45,12 @@ namespace JSON {
         elements.push_back(make_unique<Array>());
         return *(static_cast<Array*>(elements[elements.size() - 1].get()));
     }
+
+    void *Array::GetValuePointer() {
+        return this;
+    }
+
+    bool Array::IsArray() const {
+        return true;
+    }
 }

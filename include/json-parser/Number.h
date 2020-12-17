@@ -7,6 +7,7 @@ namespace JSON {
         public:
 
         virtual std::string ToString(int indentation = 0);
+        virtual bool IsNumber() const override;
 
         Number(double value);
 
@@ -15,9 +16,7 @@ namespace JSON {
 
         protected:
 
-        void *GetValuePointer() override {
-            return &value;
-        }
+        virtual void *GetValuePointer() override;
 
         private:
 

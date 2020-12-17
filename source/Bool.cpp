@@ -18,4 +18,12 @@ namespace JSON {
     std::string Bool::ToString(int indentation) {
         return GetValue() ? "true" : "false";
     }
+
+    void *Bool::GetValuePointer() {
+        return &value;
+    }
+
+    bool Bool::IsBool() const {
+        return true;
+    }
 }
