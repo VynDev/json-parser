@@ -1,3 +1,5 @@
+#include <sstream>
+#include <limits>
 #include "json-parser/Number.h"
 
 using namespace std;
@@ -16,6 +18,9 @@ namespace JSON {
     }
 
     std::string Number::ToString(int indentation) {
-        return to_string(this->value);
+        std::ostringstream out;
+        out.precision(std::numeric_limits<double>::max_digits10 + 2);
+        out << std::fixed << this->value;
+        return out.str();
     }
 }

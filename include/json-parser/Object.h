@@ -16,6 +16,7 @@ namespace JSON {
 
         void AddField(const std::string& name, const char* value);
         void AddField(const std::string& name, const std::string& value);
+        void AddField(const std::string& name, int value);
         void AddField(const std::string& name, double value);
         void AddField(const std::string& name, bool value);
         void AddField(const std::string& name, const Object &object);

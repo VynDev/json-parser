@@ -1,28 +1,26 @@
-solution "json-parser"
-	configurations {"Static", "Shared"}
+workspace "json-parser"
+	configurations {"Debug", "Release"}
 
 	project "json-parser"
-		language "C++"
-		cppdialect "C++17"
-		includedirs {"include"}
-		files {"source/**.cpp"}
-		removefiles {"source/**.test.cpp"}
+		kind "StaticLib"
+		language "C++"; cppdialect "C++17"
 		targetdir "bin"
 
-		configuration "Static"
-			kind "StaticLib"
+		includedirs {"include"}
 
-		configuration "Shared"
-			kind "SharedLib"
+		files {"source/**.cpp"}
+		removefiles {"source/**.test.cpp"}
+		
 
 	project "basics"
-	kind "ConsoleApp"
-	language "C++"
-	cppdialect "C++17"
-	includedirs {"include"}
-	files {"examples/basics.cpp",}
-	links {"json-parser"}
-	targetdir "bin"
+		kind "ConsoleApp"
+		language "C++"; cppdialect "C++17"
+		targetdir "bin"
+
+		includedirs {"include"}
+		links {"json-parser"}
+
+		files {"examples/basics.cpp"}
 
 newaction {
 	trigger = "clean",

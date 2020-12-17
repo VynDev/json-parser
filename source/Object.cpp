@@ -33,6 +33,10 @@ namespace JSON {
         fields.insert(std::make_pair(name, make_unique<String>(value)));
     }
 
+    void Object::AddField(const std::string& name, int value) {
+        AddField(name, static_cast<double>(value));
+    }
+
     void Object::AddField(const std::string& name, double value) {
         fields.insert(std::make_pair(name, make_unique<Number>(value)));
     }

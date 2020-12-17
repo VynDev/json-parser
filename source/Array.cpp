@@ -20,6 +20,10 @@ namespace JSON {
         return returnValue;
     }
 
+    const std::vector<std::unique_ptr<Type>> &Array::GetElements() const {
+        return elements;
+    }
+
     void Array::AddElement(const char* value) {
         AddElement(static_cast<string>(value));
     }
