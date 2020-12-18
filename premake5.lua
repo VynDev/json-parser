@@ -34,3 +34,11 @@ newaction {
 		print("done.")
 	end
 }
+
+newaction {
+	trigger = "tests",
+	description = "run tests",
+	execute = function ()
+		os.execute("./bin/basics")
+	end
+}

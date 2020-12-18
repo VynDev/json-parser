@@ -16,14 +16,14 @@ namespace JSON {
         void AddElement(const std::string& value);
         void AddElement(const double value);
 
-        const std::vector<std::unique_ptr<Type>> &GetElements() const;
+        const std::vector<std::unique_ptr<Type>>& GetElements() const;
 
-        Object &AddObject();
-        Array &AddArray();
+        Object& AddObject();
+        Array& AddArray();
 
         protected:
 
-        virtual void *GetValuePointer() override;
+        virtual void* GetValuePointer() override;
 
         private:
 

@@ -1,9 +1,7 @@
 #include "json-parser/String.h"
 
-using namespace std;
-
 namespace JSON {
-    String::String(const string& value) : value(value) {
+    String::String(const std::string& value) : value(value) {
 
     }
 
@@ -11,7 +9,7 @@ namespace JSON {
         return "\"" + GetValue() + "\"";
     }
 
-    void String::SetValue(const string& value) {
+    void String::SetValue(const std::string& value) {
         this->value = value;
     }
 
@@ -19,7 +17,7 @@ namespace JSON {
         return this->value;
     }
 
-    void *String::GetValuePointer() {
+    void* String::GetValuePointer() {
         return &value;
     }
 

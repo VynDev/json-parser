@@ -16,7 +16,7 @@ namespace JSON {
 
         protected:
 
-        virtual void *GetValuePointer() override;
+        virtual void* GetValuePointer() override;
 
         private:
 

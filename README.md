@@ -35,16 +35,13 @@ json.Save("examples/basics_modified.json");
 premake5 gmake
 make
 ```
-You now have the lib at bin/libjson-parser.a.  
-You can also run the tests:
+The lib is located at bin/libjson-parser.a.  
+You can run the tests:
 ```
-bin/tests
+premake5 tests
 ```
 
 ## Documentation
 
-You have the documentation as comments into the headers, and the usage from the examples. It's a very simple json
-library so there is a quick but almost complete overview of the function:
-```cpp
-[TODO]
-```
+You have the documentation as comments into the headers.  
+It's a very simple json library so the examples cover almost everything you can do with it.

@@ -20,7 +20,7 @@ namespace JSON {
         return returnValue;
     }
 
-    const std::vector<std::unique_ptr<Type>> &Array::GetElements() const {
+    const vector<unique_ptr<Type>> &Array::GetElements() const {
         return elements;
     }
 
@@ -36,17 +36,17 @@ namespace JSON {
         elements.push_back(make_unique<Number>(value));
     }
 
-    Object &Array::AddObject() {
+    Object& Array::AddObject() {
         elements.push_back(make_unique<Object>());
         return *(static_cast<Object*>(elements[elements.size() - 1].get()));
     }
 
-    Array &Array::AddArray() {
+    Array& Array::AddArray() {
         elements.push_back(make_unique<Array>());
         return *(static_cast<Array*>(elements[elements.size() - 1].get()));
     }
 
-    void *Array::GetValuePointer() {
+    void* Array::GetValuePointer() {
         return this;
     }
 

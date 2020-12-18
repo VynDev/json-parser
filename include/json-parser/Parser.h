@@ -23,7 +23,7 @@ namespace JSON {
 
         std::string ParseKey();
 
-        void HandleValue(const std::string& key, Object *object);
+        void HandleValue(const std::string& key, Object* object);
 
         void HandleValue(Array *array);
 

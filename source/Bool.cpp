@@ -15,11 +15,11 @@ namespace JSON {
         return value;
     }
 
-    std::string Bool::ToString(int indentation) {
+    string Bool::ToString(int indentation) {
         return GetValue() ? "true" : "false";
     }
 
-    void *Bool::GetValuePointer() {
+    void* Bool::GetValuePointer() {
         return &value;
     }
 

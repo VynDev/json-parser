@@ -12,11 +12,11 @@ namespace JSON {
         virtual bool IsString() const override;
 
         void SetValue(const std::string& value);
-        const std::string &GetValue() const;
+        const std::string& GetValue() const;
 
         protected:
 
-        virtual void *GetValuePointer() override;
+        virtual void* GetValuePointer() override;
 
         private:
 

@@ -17,14 +17,14 @@ namespace JSON {
         return this->value;
     }
 
-    std::string Number::ToString(int indentation) {
-        std::ostringstream out;
-        out.precision(std::numeric_limits<double>::max_digits10 + 2);
-        out << std::fixed << this->value;
+    string Number::ToString(int indentation) {
+        ostringstream out;
+        out.precision(numeric_limits<double>::max_digits10 + 2);
+        out << fixed << this->value;
         return out.str();
     }
 
-    void *Number::GetValuePointer() {
+    void* Number::GetValuePointer() {
         return &value;
     }
 

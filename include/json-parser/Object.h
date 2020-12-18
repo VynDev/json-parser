@@ -31,17 +31,17 @@ namespace JSON {
         bool IsValid() const {return bIsValid;}
         std::string GetError() const {return error;}
 
-        Type& operator[] (const std::string key);
+        Type& operator[] (const std::string& key);
 
         protected:
 
-        virtual void *GetValuePointer() override;
+        virtual void* GetValuePointer() override;
 
         private:
 
         bool bIsValid = true;
         std::string error;
-        const std::map<std::string, std::unique_ptr<Type>> &GetMap() const;
+        const std::map<std::string, std::unique_ptr<Type>>& GetMap() const;
         std::map<std::string, std::unique_ptr<Type>> fields;
     };
 }

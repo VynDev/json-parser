@@ -5,7 +5,7 @@
 using namespace std;
 
 namespace JSON {
-    std::map<int, std::string> errors = {
+    map<int, string> errors = {
         {ERRORS::UNKNOWN, "Unknown error occured"},
         {ERRORS::MISSING_COMMA, "Missing comma"},
         {ERRORS::VALUE_EXPECTED, "Value expected (maybe you forgot a trailing comma)"},
@@ -29,7 +29,7 @@ namespace JSON {
         reason = errors[errorCode] + string(" at line ") + to_string(line);
     }
 
-    const std::string& Exception::GetReason() const {
+    const string& Exception::GetReason() const {
         return reason;
     }
 

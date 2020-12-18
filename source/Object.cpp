@@ -13,7 +13,7 @@ using namespace std;
 
 namespace JSON {
 
-    Object::Object(const std::string& filename) {
+    Object::Object(const string& filename) {
         Parser parser(filename);
 
         try {
@@ -30,23 +30,23 @@ namespace JSON {
     }
 
     void Object::AddField(const string& name, const string& value) {
-        fields.insert(std::make_pair(name, make_unique<String>(value)));
+        fields.insert(make_pair(name, make_unique<String>(value)));
     }
 
-    void Object::AddField(const std::string& name, int value) {
+    void Object::AddField(const string& name, int value) {
         AddField(name, static_cast<double>(value));
     }
 
-    void Object::AddField(const std::string& name, double value) {
-        fields.insert(std::make_pair(name, make_unique<Number>(value)));
+    void Object::AddField(const string& name, double value) {
+        fields.insert(make_pair(name, make_unique<Number>(value)));
     }
 
     void Object::AddField(const string& name, bool value) {
-        fields.insert(std::make_pair(name, make_unique<Bool>(value)));
+        fields.insert(make_pair(name, make_unique<Bool>(value)));
     }
 
-    Object &Object::AddObject(const string& name) {
-        auto pair = fields.insert(std::make_pair(name, make_unique<Object>()));
+    Object& Object::AddObject(const string& name) {
+        auto pair = fields.insert(make_pair(name, make_unique<Object>()));
         return *(static_cast<Object*>(pair.first->second.get()));
     }
 
@@ -69,16 +69,16 @@ namespace JSON {
         }
     }
 
-    const std::map<std::string, std::unique_ptr<Type>> &Object::GetMap() const {
+    const map<string, unique_ptr<Type>> &Object::GetMap() const {
         return fields;
     }
 
-    Array &Object::AddArray(const string& name) {
-        auto pair = fields.insert(std::make_pair(name, make_unique<Array>()));
+    Array& Object::AddArray(const string& name) {
+        auto pair = fields.insert(make_pair(name, make_unique<Array>()));
         return *(static_cast<Array*>(pair.first->second.get()));
     }
 
-    void *Object::GetValuePointer() {
+    void* Object::GetValuePointer() {
         return this;
     }
 
@@ -86,11 +86,11 @@ namespace JSON {
         return true;
     }
 
-    Type& Object::operator[] (const std::string key) {
+    Type& Object::operator[] (const string& key) {
         return *fields[key].get();
     }
 
-    bool Object::HasKey(const std::string& key) const {
+    bool Object::HasKey(const string& key) const {
         return fields.find(key) != fields.end();
     }
 }

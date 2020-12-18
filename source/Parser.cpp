@@ -43,7 +43,7 @@ namespace JSON {
         return key;
     }
 
-    void Parser::HandleValue(const string& key, Object *object) {
+    void Parser::HandleValue(const string& key, Object* object) {
         if (CurrentChar() == '"')
             object->AddField(key, ParseString());
         else if (isdigit(CurrentChar()) || CurrentChar() == '-')
@@ -59,7 +59,7 @@ namespace JSON {
             
     }
 
-    void Parser::HandleValue(Array *array) {
+    void Parser::HandleValue(Array* array) {
         if (CurrentChar() == '"')
             array->AddElement(ParseString());
         else if (isdigit(CurrentChar()) || CurrentChar() == '-')
