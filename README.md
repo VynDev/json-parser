@@ -14,7 +14,7 @@ if (!json.IsValid()) {
 }
 
 /* Modify a variable */
-json["number"].AsNumber() = json["number"].AsNumber() + 1;
+json["number"] = json["number"].AsNumber() + 1;
     
 /* Save a json object */
 json.Save("examples/basics_modified.json");

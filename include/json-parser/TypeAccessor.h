@@ -1,52 +1,48 @@
 #pragma once
-#include <vector>
-#include <string>
-#include <map>
-#include <memory>
+#include "Type.h"
+#include "Object.h"
+#include <iostream>
 
 namespace JSON {
-
-    class Object;
-    class Array;
-    class TypeAccessor;
-
-    class Type {
-
-        friend class TypeAccessor;
+    class TypeAccessor {
 
         public:
+
+        TypeAccessor(Type* object, Type* parent, const std::string& key);
 
         /**
          *  Returns a string with of the value with the needed padding.
          *  @param indentation The needed padding.
          *  @return The value as string. 
         */
-        virtual std::string ToString(int indentation = 0);
+        std::string ToString(int indentation = 0);
 
         /**
          *  @return true if the value is a string, false otherwise. 
         */
-        virtual bool IsString() const;
+        bool IsString() const;
 
         /**
          *  @return true if the value is a number (integer, float, double), false otherwise. 
         */
-        virtual bool IsNumber() const;
+        bool IsNumber() const;
 
         /**
          *  @return true if the value is a boolean, false otherwise. 
         */
-        virtual bool IsBool() const;
+        bool IsBool() const;
 
         /**
          *  @return true if the value is a json object, false otherwise. 
         */
-        virtual bool IsObject() const;
+        bool IsObject() const;
 
         /**
          *  @return true if the value is a json array, false otherwise. 
         */
-        virtual bool IsArray() const;
+        bool IsArray() const;
+
+        bool KeyExists() const;
 
         /**
          *  Convert the value to a <std::string>. 
@@ -83,12 +79,17 @@ namespace JSON {
         */
         Array& AsArray();
 
-        /*Type& operator=(int value) {
-        }*/
+        TypeAccessor operator=(int value);
+        TypeAccessor operator=(double value);
+        TypeAccessor operator=(bool value);
+        TypeAccessor operator=(const char* value);
 
-        protected:
+        void Delete();
 
-        std::string GetTabString(int count) const;
-        virtual void* GetValuePointer() = 0;
+        private:
+
+        std::string key;
+        Type* parent = nullptr;
+        Type* object = nullptr;
     };
 }

@@ -148,7 +148,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object.HasKey("string") == true);
 
             SECTION("number") {
-                object.Remove("number");
+                object.Delete("number");
                 REQUIRE(object.HasKey("number") == false);
                 REQUIRE(object.HasKey("decimal_number") == true);
                 REQUIRE(object.HasKey("isTrue") == true);
@@ -157,7 +157,7 @@ TEST_CASE("Object", "[object]") {
             }
 
             SECTION("decimal_number") {
-                object.Remove("decimal_number");
+                object.Delete("decimal_number");
                 REQUIRE(object.HasKey("number") == true);
                 REQUIRE(object.HasKey("decimal_number") == false);
                 REQUIRE(object.HasKey("isTrue") == true);
@@ -166,7 +166,7 @@ TEST_CASE("Object", "[object]") {
             }
 
             SECTION("isTrue") {
-                object.Remove("isTrue");
+                object.Delete("isTrue");
                 REQUIRE(object.HasKey("number") == true);
                 REQUIRE(object.HasKey("decimal_number") == true);
                 REQUIRE(object.HasKey("isTrue") == false);
@@ -175,7 +175,7 @@ TEST_CASE("Object", "[object]") {
             }
 
             SECTION("isFalse") {
-                object.Remove("isFalse");
+                object.Delete("isFalse");
                 REQUIRE(object.HasKey("number") == true);
                 REQUIRE(object.HasKey("decimal_number") == true);
                 REQUIRE(object.HasKey("isTrue") == true);
@@ -184,7 +184,134 @@ TEST_CASE("Object", "[object]") {
             }
 
             SECTION("string") {
-                object.Remove("string");
+                object.Delete("string");
+                REQUIRE(object.HasKey("number") == true);
+                REQUIRE(object.HasKey("decimal_number") == true);
+                REQUIRE(object.HasKey("isTrue") == true);
+                REQUIRE(object.HasKey("isFalse") == true);
+                REQUIRE(object.HasKey("string") == false);
+            }
+        }
+
+        SECTION("Saving and loading json") {
+            const std::string path = "./tests/json_examples/test_save.json";
+
+            object.Save(path);
+
+            JSON::Object loadedObject(path);
+
+            REQUIRE(loadedObject.IsValid() == true);
+
+            REQUIRE(loadedObject.HasKey("number") == true);
+            REQUIRE(loadedObject["number"].IsNumber());
+            REQUIRE(loadedObject["number"].AsNumber() == 2);
+
+            REQUIRE(loadedObject.HasKey("decimal_number") == true);
+            REQUIRE(loadedObject["decimal_number"].IsNumber());
+            REQUIRE(loadedObject["decimal_number"].AsNumber() == 2.1);
+
+            REQUIRE(loadedObject.HasKey("isTrue") == true);
+            REQUIRE(loadedObject["isTrue"].IsBool());
+            REQUIRE(loadedObject["isTrue"].AsBool() == true);
+
+            REQUIRE(loadedObject.HasKey("isFalse") == true);
+            REQUIRE(loadedObject["isFalse"].IsBool());
+            REQUIRE(loadedObject["isFalse"].AsBool() == false);
+
+            REQUIRE(loadedObject.HasKey("string") == true);
+            REQUIRE(loadedObject["string"].IsString());
+            REQUIRE(loadedObject["string"].AsString() == "I'm a full string :)");
+
+            REQUIRE(loadedObject.HasKey("ramdom_key_that_shouldnt_exist") == false);
+        }
+    }
+
+    SECTION("Normal usages 2 (alternatives)") {
+        
+        object["number"] = 2;
+        object["decimal_number"] = 2.1;
+        object["isTrue"] = true;
+        object["isFalse"] = false;
+        object["string"] = "I'm a full string :)";
+
+        REQUIRE(object["number"].IsNumber());
+        REQUIRE(object["number"].AsNumber() == 2);
+
+        REQUIRE(object["decimal_number"].IsNumber());
+        REQUIRE(object["decimal_number"].AsNumber() == 2.1);
+
+        REQUIRE(object["isTrue"].IsBool());
+        REQUIRE(object["isTrue"].AsBool() == true);
+
+        REQUIRE(object["isFalse"].IsBool());
+        REQUIRE(object["isFalse"].AsBool() == false);
+
+        REQUIRE(object["string"].IsString());
+        REQUIRE(object["string"].AsString() == "I'm a full string :)");
+        
+        SECTION("Change values") {
+            object["number"] = 4;
+            REQUIRE(object["number"].AsNumber() == 4);
+
+            object["decimal_number"] = 4.4;
+            REQUIRE(object["decimal_number"].AsNumber() == 4.4);
+
+            object["isTrue"] = false;
+            REQUIRE(object["isTrue"].AsBool() == false);
+
+            object["isFalse"] = true;
+            REQUIRE(object["isFalse"].AsBool() == true);
+
+            object["string"] = "lol ?";
+            REQUIRE(object["string"].AsString() == "lol ?");
+        }
+
+        SECTION("Delete values") {
+            
+            REQUIRE(object.HasKey("number") == true);
+            REQUIRE(object.HasKey("decimal_number") == true);
+            REQUIRE(object.HasKey("isTrue") == true);
+            REQUIRE(object.HasKey("isFalse") == true);
+            REQUIRE(object.HasKey("string") == true);
+
+            SECTION("number") {
+                object["number"].Delete();
+                REQUIRE(object.HasKey("number") == false);
+                REQUIRE(object.HasKey("decimal_number") == true);
+                REQUIRE(object.HasKey("isTrue") == true);
+                REQUIRE(object.HasKey("isFalse") == true);
+                REQUIRE(object.HasKey("string") == true);
+            }
+
+            SECTION("decimal_number") {
+                object["decimal_number"].Delete();
+                REQUIRE(object.HasKey("number") == true);
+                REQUIRE(object.HasKey("decimal_number") == false);
+                REQUIRE(object.HasKey("isTrue") == true);
+                REQUIRE(object.HasKey("isFalse") == true);
+                REQUIRE(object.HasKey("string") == true);
+            }
+
+            SECTION("isTrue") {
+                object["isTrue"].Delete();
+                REQUIRE(object.HasKey("number") == true);
+                REQUIRE(object.HasKey("decimal_number") == true);
+                REQUIRE(object.HasKey("isTrue") == false);
+                REQUIRE(object.HasKey("isFalse") == true);
+                REQUIRE(object.HasKey("string") == true);
+            }
+
+            SECTION("isFalse") {
+                object["isFalse"].Delete();
+                REQUIRE(object.HasKey("number") == true);
+                REQUIRE(object.HasKey("decimal_number") == true);
+                REQUIRE(object.HasKey("isTrue") == true);
+                REQUIRE(object.HasKey("isFalse") == false);
+                REQUIRE(object.HasKey("string") == true);
+            }
+
+            SECTION("string") {
+                object["string"].Delete();
                 REQUIRE(object.HasKey("number") == true);
                 REQUIRE(object.HasKey("decimal_number") == true);
                 REQUIRE(object.HasKey("isTrue") == true);

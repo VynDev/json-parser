@@ -27,7 +27,7 @@ namespace JSON {
         Object &AddObject(const std::string& name);
         Array &AddArray(const std::string& name);
 
-        void Remove(const std::string& key);
+        void Delete(const std::string& key);
 
         void Save(const std::string& filename);
         bool IsValid() const {return bIsValid;}
@@ -36,7 +36,7 @@ namespace JSON {
         int GetErrorCode() const;
         int GetErrorLine() const;
 
-        Type& operator[] (const std::string& key);
+        TypeAccessor operator[] (const std::string& key);
 
         protected:
 

@@ -9,6 +9,8 @@ namespace JSON {
 
         public:
 
+        Array() {};
+
         virtual std::string ToString(int indentation = 0);
         virtual bool IsArray() const override;
 

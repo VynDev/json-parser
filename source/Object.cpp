@@ -8,6 +8,7 @@
 #include "json-parser/Array.h"
 #include "json-parser/Parser.h"
 #include "json-parser/Exception.h"
+#include "json-parser/TypeAccessor.h"
 
 using namespace std;
 
@@ -87,15 +88,17 @@ namespace JSON {
         return true;
     }
 
-    Type& Object::operator[] (const string& key) {
-        return *fields[key].get();
+    TypeAccessor Object::operator[] (const string& key) {
+        if (!HasKey(key))
+            return TypeAccessor(nullptr, this, key);
+        return TypeAccessor(fields[key].get(), this, key);
     }
 
     bool Object::HasKey(const string& key) const {
         return fields.find(key) != fields.end();
     }
 
-    void Object::Remove(const string& key) {
+    void Object::Delete(const string& key) {
         if (!HasKey(key))
             return ;
         fields.erase(key);

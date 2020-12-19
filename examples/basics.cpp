@@ -7,15 +7,16 @@ int main()
 {
 	/* Load a json object */
 	JSON::Object json("examples/basics.json");
-	if (json.IsValid())
+	if (json.IsValid()) {
 		cout << json.ToString() << endl;
+	}
 	else {
 		cout << "json is not valid: " << json.GetError() << endl;
 		return 1;
 	}
 
 	/* Modify a json object */
-	json["number"].AsNumber() = json["number"].AsNumber() + 1;
+	json["number"] = json["number"].AsNumber() + 1;
 		
 	/* Save a json object */
 	json.Save("examples/basics_modified.json");
