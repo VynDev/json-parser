@@ -7,8 +7,13 @@ using namespace std;
 namespace JSON {
     map<int, string> errors = {
         {ERRORS::UNKNOWN, "Unknown error occured"},
+        {ERRORS::CANT_OPEN_FILE, "Can't open file"},
+
         {ERRORS::MISSING_COMMA, "Missing comma"},
         {ERRORS::VALUE_EXPECTED, "Value expected (maybe you forgot a trailing comma)"},
+
+        {ERRORS::OBJECT_MISSING_CLOSING_BRACKET, "Missing closing bracket for object"},
+        {ERRORS::OBJECT_MISSING_OPENING_BRACKET, "Missing opening bracket for object"},
 
         {ERRORS::KEY_MISSING_QUOTE_START, "Missing quote a the beginning of the key"},
         {ERRORS::KEY_MISSING_QUOTE_END, "Missing quote a the end of the key"},
@@ -35,5 +40,9 @@ namespace JSON {
 
     int Exception::GetLine() const {
         return line;
+    }
+
+    int Exception::GetErrorCode() const {
+        return errorCode;
     }
 }

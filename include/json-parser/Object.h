@@ -27,9 +27,14 @@ namespace JSON {
         Object &AddObject(const std::string& name);
         Array &AddArray(const std::string& name);
 
+        void Remove(const std::string& key);
+
         void Save(const std::string& filename);
         bool IsValid() const {return bIsValid;}
-        std::string GetError() const {return error;}
+
+        std::string GetError() const;
+        int GetErrorCode() const;
+        int GetErrorLine() const;
 
         Type& operator[] (const std::string& key);
 
@@ -41,6 +46,8 @@ namespace JSON {
 
         bool bIsValid = true;
         std::string error;
+        int errorCode;
+        int errorLine;
         const std::map<std::string, std::unique_ptr<Type>>& GetMap() const;
         std::map<std::string, std::unique_ptr<Type>> fields;
     };

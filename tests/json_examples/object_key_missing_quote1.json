@@ -1,0 +1,7 @@
+{
+	"string": "I'm a full string :)",
+	number": 2.0000000000000000000,
+	"isTrue": true,
+	"isFalse": false,
+	"decimal_number": 2.1000000000000000888
+}

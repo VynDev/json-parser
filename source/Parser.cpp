@@ -10,10 +10,8 @@ namespace JSON {
 
     Parser::Parser(const string& filename) : filename(filename), currentIndex(0), currentLine(1), jsonString("") {
         ifstream file(filename);
-        if (!file) {
-            cout << "Cannot open file" << endl;
-            exit(1);
-        }
+        if (!file)
+            throw Exception(ERRORS::CANT_OPEN_FILE, currentLine);
 
         while (!file.eof()) {
             string line;
@@ -102,7 +100,7 @@ namespace JSON {
 
     bool Parser::ParseBool() {
         int start = currentIndex;
-        while (CurrentChar() != ',' && CurrentChar() != '}' && CurrentChar() != ']')
+        while (isalpha(CurrentChar()))
             NextChar();
         string stringValue = jsonString.substr(start, currentIndex - start);
         if (stringValue == "true")
@@ -113,6 +111,8 @@ namespace JSON {
     }
 
     void Parser::ParseObject(Object* object) {
+        if (CurrentChar() != '{')
+            throw Exception(ERRORS::OBJECT_MISSING_OPENING_BRACKET, currentLine);
 
         NextChar();
         while (!IsEnd()) {
@@ -134,7 +134,9 @@ namespace JSON {
                 NextChar();
             }
             else {
-                cout << "Parsing error" << endl;
+                if (IsEnd() && jsonString[jsonString.length() - 1] != '}')
+                    throw Exception(ERRORS::OBJECT_MISSING_CLOSING_BRACKET, currentLine);
+                throw Exception(ERRORS::MISSING_COMMA, currentLine);
             }
         }
     }

@@ -14,14 +14,15 @@ using namespace std;
 namespace JSON {
 
     Object::Object(const string& filename) {
-        Parser parser(filename);
-
         try {
+            Parser parser(filename);
             parser.ParseObject(this);
         }
         catch (const Exception& e) {
             bIsValid = false;
             error = e.GetReason();
+            errorCode = e.GetErrorCode();
+            errorLine = e.GetLine();
         }
     }
 
@@ -93,4 +94,22 @@ namespace JSON {
     bool Object::HasKey(const string& key) const {
         return fields.find(key) != fields.end();
     }
+
+    void Object::Remove(const string& key) {
+        if (!HasKey(key))
+            return ;
+        fields.erase(key);
+    }
+
+    string Object::GetError() const {
+        return error;
+    };
+
+    int Object::GetErrorCode() const {
+        return errorCode;
+    };
+
+    int Object::GetErrorLine() const {
+        return errorLine;
+    };
 }

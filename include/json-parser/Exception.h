@@ -8,8 +8,13 @@ namespace JSON {
     namespace ERRORS {
         enum {
             UNKNOWN = 0,
+            CANT_OPEN_FILE,
+            
             MISSING_COMMA,
             VALUE_EXPECTED,
+
+            OBJECT_MISSING_OPENING_BRACKET,
+            OBJECT_MISSING_CLOSING_BRACKET,
 
             KEY_MISSING_QUOTE_START,
             KEY_MISSING_QUOTE_END,
@@ -42,6 +47,7 @@ namespace JSON {
         const std::string& GetReason() const;
 
         int GetLine() const;
+        int GetErrorCode() const;
         
         private:
 
