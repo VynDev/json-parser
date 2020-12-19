@@ -1,15 +1,14 @@
+**In development!**  
 Load or save your data in the JSON format.
 
 ## Quick example
 
 ```cpp
 /* Load a json object from a file */
-JSON::Object json("examples/basics.json");
+Object json("examples/basics.json");
 
 /* Check if there is any error */
-if (json.IsValid())
-    cout << json.ToString() << endl;
-else {
+if (!json.IsValid()) {
     cout << "json is not valid: " << json.GetError() << endl;
     return 1;
 }

@@ -1,6 +1,9 @@
 workspace "json-parser"
 	configurations {"Debug", "Release"}
 
+	filter "configurations:Release"
+		buildoptions "-O3"
+
 	project "json-parser"
 		kind "StaticLib"
 		language "C++"; cppdialect "C++17"
@@ -10,7 +13,6 @@ workspace "json-parser"
 
 		files {"source/**.cpp"}
 		removefiles {"source/**.test.cpp"}
-		
 
 	project "basics"
 		kind "ConsoleApp"

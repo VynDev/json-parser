@@ -48,6 +48,7 @@ namespace JSON {
         std::string error;
         int errorCode;
         int errorLine;
+
         const std::map<std::string, std::unique_ptr<Type>>& GetMap() const;
         std::map<std::string, std::unique_ptr<Type>> fields;
     };
