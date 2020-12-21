@@ -11,9 +11,6 @@ namespace JSON {
 
         Bool(bool value);
 
-        void SetValue(bool value);
-        bool GetValue() const;
-
         protected:
 
         virtual void* GetValuePointer() override;

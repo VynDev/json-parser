@@ -11,9 +11,6 @@ namespace JSON {
 
         Number(double value);
 
-        void SetValue(double value);
-        double GetValue() const;
-
         protected:
 
         virtual void* GetValuePointer() override;

@@ -7,16 +7,8 @@ namespace JSON {
 
     }
 
-    void Bool::SetValue(bool value) {
-        this->value = value;
-    }
-
-    bool Bool::GetValue() const {
-        return value;
-    }
-
     string Bool::ToString(int indentation) {
-        return GetValue() ? "true" : "false";
+        return value ? "true" : "false";
     }
 
     void* Bool::GetValuePointer() {

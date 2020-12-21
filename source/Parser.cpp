@@ -142,6 +142,8 @@ namespace JSON {
     }
 
     void Parser::ParseArray(Array* array) {
+        if (CurrentChar() != '[')
+            throw Exception(ERRORS::OBJECT_MISSING_OPENING_BRACKET, currentLine);
 
         NextChar();
         while (!IsEnd()) {
@@ -157,7 +159,9 @@ namespace JSON {
                 NextChar();
             }
             else {
-                cout << "Parsing error" << endl;
+                if (IsEnd() && jsonString[jsonString.length() - 1] != ']')
+                    throw Exception(ERRORS::OBJECT_MISSING_CLOSING_BRACKET, currentLine);
+                throw Exception(ERRORS::MISSING_COMMA, currentLine);
             }
         }
     }

@@ -9,6 +9,7 @@ namespace JSON {
         public:
 
         TypeAccessor(Type* object, Type* parent, const std::string& key);
+        TypeAccessor(Type* object, Type* parent, int index);
 
         /**
          *  Returns a string with of the value with the needed padding.
@@ -43,6 +44,7 @@ namespace JSON {
         bool IsArray() const;
 
         bool KeyExists() const;
+        bool HasIndex() const;
 
         /**
          *  Convert the value to a <std::string>. 
@@ -89,6 +91,7 @@ namespace JSON {
         private:
 
         std::string key;
+        int index;
         Type* parent = nullptr;
         Type* object = nullptr;
     };

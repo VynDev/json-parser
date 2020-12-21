@@ -1,8 +1,17 @@
 #include "json-parser/TypeAccessor.h"
+#include "json-parser/Array.h"
+#include "json-parser/Number.h"
+#include "json-parser/Bool.h"
+#include "json-parser/String.h"
 
 namespace JSON {
     TypeAccessor::TypeAccessor(Type* object, Type* parent, const std::string& key)
         : object(object), parent(parent), key(key) {
+
+    }
+
+    TypeAccessor::TypeAccessor(Type* object, Type* parent, int index)
+        : object(object), parent(parent), index(index) {
 
     }
 
@@ -31,6 +40,10 @@ namespace JSON {
     }
 
     bool TypeAccessor::KeyExists() const {
+        return object != nullptr;
+    }
+
+    bool TypeAccessor::HasIndex() const {
         return object != nullptr;
     }
 
@@ -70,8 +83,17 @@ namespace JSON {
             else if (!KeyExists()) {
                 parent->AsObject().AddField(key, value);
             }
+            return parent->AsObject()[key];
         }
-        return parent->AsObject()[key];
+        else if (parent && parent->IsArray()) {
+            if (HasIndex() && IsNumber()) {
+                object->AsNumber() = value;
+            }
+            else if (HasIndex() && !IsNumber()) {
+                parent->AsArray().Replace<Number>(index, value);
+            }
+            return parent->AsArray()[index];
+        }
     }
 
     TypeAccessor TypeAccessor::operator=(bool value) {
@@ -86,8 +108,17 @@ namespace JSON {
             else if (!KeyExists()) {
                 parent->AsObject().AddField(key, value);
             }
+            return parent->AsObject()[key];
         }
-        return parent->AsObject()[key];
+        else if (parent && parent->IsArray()) {
+            if (HasIndex() && IsBool()) {
+                object->AsBool() = value;
+            }
+            else if (HasIndex() && !IsBool()) {
+                parent->AsArray().Replace<Bool>(index, value);
+            }
+            return parent->AsArray()[index];
+        }
     }
 
     TypeAccessor TypeAccessor::operator=(const char* value) {
@@ -102,6 +133,16 @@ namespace JSON {
             else if (!KeyExists()) {
                 parent->AsObject().AddField(key, value);
             }
+            return parent->AsObject()[key];
+        }
+        else if (parent && parent->IsArray()) {
+            if (HasIndex() && IsString()) {
+                object->AsString() = value;
+            }
+            else if (HasIndex() && !IsString()) {
+                parent->AsArray().Replace<String>(index, std::string(value));
+            }
+            return parent->AsArray()[index];
         }
         return parent->AsObject()[key];
     }

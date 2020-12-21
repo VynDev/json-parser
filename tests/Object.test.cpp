@@ -406,4 +406,8 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object.GetErrorCode() == JSON::ERRORS::MISSING_COMMA);
         }
     }
+
+    SECTION("Complete use case (nested object and array)") {
+        
+    }
 }

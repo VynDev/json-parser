@@ -6,15 +6,7 @@ namespace JSON {
     }
 
     std::string String::ToString(int indentation) {
-        return "\"" + GetValue() + "\"";
-    }
-
-    void String::SetValue(const std::string& value) {
-        this->value = value;
-    }
-
-    const std::string& String::GetValue() const {
-        return this->value;
+        return "\"" + value + "\"";
     }
 
     void* String::GetValuePointer() {
