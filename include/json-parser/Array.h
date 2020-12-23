@@ -42,6 +42,10 @@ namespace JSON {
             elements.insert(elements.begin() + index, std::make_unique<T>(value));
         }
 
+        std::string GetError() const;
+        int GetErrorCode() const;
+        int GetErrorLine() const;
+
         protected:
 
         virtual void* GetValuePointer() override;

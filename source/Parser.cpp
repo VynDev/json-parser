@@ -64,14 +64,12 @@ namespace JSON {
             array->AddElement(ParseNumber());
         else if (CurrentChar() == 't' || CurrentChar() == 'f')
             array->AddElement(ParseBool());
-        else if (CurrentChar() == '{') {
+        else if (CurrentChar() == '{')
             ParseObject(&array->AddObject());
-        }
+        else if (CurrentChar() == '[')
+            ParseArray(&array->AddArray());
         else
             throw Exception(ERRORS::VALUE_EXPECTED, currentLine);
-        /*else if (CurrentChar() == '[') {    
-            ParseArray(array->AddArray());
-        }*/
             
     }
 
@@ -115,6 +113,11 @@ namespace JSON {
             throw Exception(ERRORS::OBJECT_MISSING_OPENING_BRACKET, currentLine);
 
         NextChar();
+        SkipWhiteSpaces();
+        if (CurrentChar() == '}') {
+            NextChar();
+            return ;
+        }
         while (!IsEnd()) {
             SkipWhiteSpaces();
             string key = ParseKey();
@@ -128,7 +131,7 @@ namespace JSON {
 
             if (CurrentChar() == '}') {
                 NextChar();
-                break;
+                return;
             }
             else if (CurrentChar() == ',') {
                 NextChar();
@@ -146,6 +149,11 @@ namespace JSON {
             throw Exception(ERRORS::OBJECT_MISSING_OPENING_BRACKET, currentLine);
 
         NextChar();
+        SkipWhiteSpaces();
+        if (CurrentChar() == ']') {
+            NextChar();
+            return ;
+        }
         while (!IsEnd()) {
             SkipWhiteSpaces();
             HandleValue(array);
@@ -153,7 +161,7 @@ namespace JSON {
 
             if (CurrentChar() == ']') {
                 NextChar();
-                break;
+                return;
             }
             else if (CurrentChar() == ',') {
                 NextChar();

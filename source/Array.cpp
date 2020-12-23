@@ -94,4 +94,16 @@ namespace JSON {
     void Array::Delete(int index) {
         elements.erase(elements.begin() + index);
     }
+
+    string Array::GetError() const {
+        return error;
+    };
+
+    int Array::GetErrorCode() const {
+        return errorCode;
+    };
+
+    int Array::GetErrorLine() const {
+        return errorLine;
+    };
 }

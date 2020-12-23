@@ -1,0 +1,16 @@
+[
+    "This is a string",
+    42,
+    -42,
+    -42.5469,
+    42.5469,
+    true,
+    false,
+    {
+        "Hello": "World"
+    },
+    [
+        "hellobutinlowercase",
+        "world"
+    ]
+]

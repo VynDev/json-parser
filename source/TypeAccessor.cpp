@@ -94,6 +94,7 @@ namespace JSON {
             }
             return parent->AsArray()[index];
         }
+        return parent->AsObject()[key]; // TODO, handle this case
     }
 
     TypeAccessor TypeAccessor::operator=(bool value) {
@@ -119,6 +120,7 @@ namespace JSON {
             }
             return parent->AsArray()[index];
         }
+        return parent->AsObject()[key]; // TODO, handle this case
     }
 
     TypeAccessor TypeAccessor::operator=(const char* value) {
@@ -144,7 +146,7 @@ namespace JSON {
             }
             return parent->AsArray()[index];
         }
-        return parent->AsObject()[key];
+        return parent->AsObject()[key]; // TODO, handle this case
     }
 
     void TypeAccessor::Delete() {

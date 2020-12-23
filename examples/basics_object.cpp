@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	/* Load a json object */
-	JSON::Object json("examples/basics.json");
+	JSON::Object json("examples/basics_object.json");
 	if (json.IsValid()) {
 		cout << json.ToString() << endl;
 	}

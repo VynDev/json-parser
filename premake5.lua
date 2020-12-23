@@ -14,7 +14,7 @@ workspace "json-parser"
 		files {"source/**.cpp"}
 		removefiles {"source/**.test.cpp"}
 
-	project "basics"
+	project "basics_object"
 		kind "ConsoleApp"
 		language "C++"; cppdialect "C++17"
 		targetdir "bin"
@@ -22,7 +22,17 @@ workspace "json-parser"
 		includedirs {"include"}
 		links {"json-parser"}
 
-		files {"examples/basics.cpp"}
+		files {"examples/basics_object.cpp"}
+
+	project "basics_array"
+		kind "ConsoleApp"
+		language "C++"; cppdialect "C++17"
+		targetdir "bin"
+
+		includedirs {"include"}
+		links {"json-parser"}
+
+		files {"examples/basics_array.cpp"}
 
 	project "tests"
 		kind "ConsoleApp"
@@ -59,6 +69,7 @@ newaction {
 	trigger = "examples",
 	description = "run the examples, for dev testing purpose",
 	execute = function ()
-		os.execute("./bin/basics")
+		os.execute("./bin/basics_object")
+		os.execute("./bin/basics_array")
 	end
 }

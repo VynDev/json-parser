@@ -1,23 +1,43 @@
 **In development!**  
 Load or save your data in the JSON format.
 
-## Quick example
+## Quick examples
 
+Create a JSON Object, set a value then print the value
 ```cpp
-/* Load a json object from a file */
-Object json("examples/basics.json");
+JSON::Object json;
 
-/* Check if there is any error */
+json["number"] = 42;
+    
+std::cout << json["number"].AsNumber() << std::endl;
+```
+
+Load an existing JSON Object, modify a value, then re-save it
+```cpp
+Object json("examples/basics_object.json");
+
 if (!json.IsValid()) {
     cout << "json is not valid: " << json.GetError() << endl;
     return 1;
 }
 
-/* Modify a variable */
 json["number"] = json["number"].AsNumber() + 1;
     
-/* Save a json object */
-json.Save("examples/basics_modified.json");
+json.Save("examples/basics_object_modified.json");
+```
+
+Alternatively, you can load an Array instead of an Object
+```cpp
+Array json("examples/basics_array.json");
+
+if (!json.IsValid()) {
+    cout << "json is not valid: " << json.GetError() << endl;
+    return 1;
+}
+
+json[0] = json[0].AsNumber() + 1;
+    
+json.Save("examples/basics_array_modified.json");
 ```
 
 ## Intallation
