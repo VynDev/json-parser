@@ -19,7 +19,7 @@ int main()
 	json[1] = json[1].AsNumber() + 1;
 		
 	/* Save a json object */
-	json.Save("examples/basics_modified.json");
+	json.Save("examples/basics_array_modified.json");
 
 	return 0;
 }

@@ -7,4 +7,4 @@ premake5
 
 tests/json_examples/*_save.json
 
-examples/basics_modified.json
+examples/*_modified.json

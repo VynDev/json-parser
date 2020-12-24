@@ -17,9 +17,9 @@ int main()
 
 	/* Modify a json object */
 	json["number"] = json["number"].AsNumber() + 1;
-		
+
 	/* Save a json object */
-	json.Save("examples/basics_modified.json");
+	json.Save("examples/basics_object_modified.json");
 
 	return 0;
 }

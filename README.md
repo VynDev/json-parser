@@ -40,7 +40,7 @@ json[0] = json[0].AsNumber() + 1;
 json.Save("examples/basics_array_modified.json");
 ```
 
-## Intallation
+## Installation
 
 ### Requirements
 
