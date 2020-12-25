@@ -34,6 +34,16 @@ workspace "json-parser"
 
 		files {"examples/basics_array.cpp"}
 
+	project "complex_object"
+		kind "ConsoleApp"
+		language "C++"; cppdialect "C++17"
+		targetdir "bin"
+
+		includedirs {"include"}
+		links {"json-parser"}
+
+		files {"examples/complex_object.cpp"}
+
 	project "tests"
 		kind "ConsoleApp"
 		language "C++"; cppdialect "C++17"
@@ -71,5 +81,6 @@ newaction {
 	execute = function ()
 		os.execute("./bin/basics_object")
 		os.execute("./bin/basics_array")
+		os.execute("./bin/complex_object")
 	end
 }

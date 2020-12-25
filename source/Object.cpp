@@ -53,6 +53,8 @@ namespace JSON {
     }
 
     string Object::ToString(int indentation) {
+        if (fields.size() == 0)
+            return "{}";
         string returnValue = "{\n";
         for (auto field = fields.rbegin(); field != fields.rend(); ++field) {
             if (field != fields.rbegin())
