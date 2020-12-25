@@ -65,3 +65,7 @@ premake5 tests
 
 You have the documentation as comments into the headers.  
 It's a very simple json library so the examples cover almost everything you can do with it.
+
+## License
+
+LGPLv3 (see the file "LICENSE" at the root)
