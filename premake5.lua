@@ -67,7 +67,7 @@ workspace "json-parser"
 
 newaction {
 	trigger = "clean",
-	description = "clean the software",
+	description = "Clean the software",
 	execute = function ()
 		print("cleaning the build...")
 		os.rmdir("./bin")
@@ -80,7 +80,7 @@ newaction {
 
 newaction {
 	trigger = "tests",
-	description = "run tests",
+	description = "Run tests",
 	execute = function ()
 		os.execute("./bin/tests")
 	end
@@ -88,7 +88,7 @@ newaction {
 
 newaction {
 	trigger = "examples",
-	description = "run the examples, for dev testing purpose",
+	description = "Run the examples, for dev testing purpose",
 	execute = function ()
 		os.execute("./bin/basics_object")
 		os.execute("./bin/basics_array")
@@ -98,10 +98,10 @@ newaction {
 
 newoption {
 	trigger     = "kind",
-	value       = "Type",
-	description = "Generate a static (.a) or dynamic (.so/.dll) library",
+	value       = "TYPE",
+	description = "Build as static (.a) or shared (.so/.dll) library",
 	allowed = {
-	   { "static",    "Static library (.a)" },
-	   { "shared",  "Shared library (.so/.dll)" }
+	   { "static", "Static library (.a)" },
+	   { "shared", "Shared library (.so/.dll)" }
 	}
  }
