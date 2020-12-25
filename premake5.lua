@@ -6,6 +6,15 @@ workspace "json-parser"
 
 	project "json-parser"
 		kind "StaticLib"
+
+		filter "options:kind=static"
+			kind "StaticLib"
+
+		filter "options:kind=shared"
+			kind "SharedLib"
+
+		filter {}
+
 		language "C++"; cppdialect "C++17"
 		targetdir "bin"
 
@@ -13,6 +22,8 @@ workspace "json-parser"
 
 		files {"source/**.cpp"}
 		removefiles {"source/**.test.cpp"}
+
+		
 
 	project "basics_object"
 		kind "ConsoleApp"
@@ -84,3 +95,13 @@ newaction {
 		os.execute("./bin/complex_object")
 	end
 }
+
+newoption {
+	trigger     = "kind",
+	value       = "Type",
+	description = "Generate a static (.a) or dynamic (.so/.dll) library",
+	allowed = {
+	   { "static",    "Static library (.a)" },
+	   { "shared",  "Shared library (.so/.dll)" }
+	}
+ }
