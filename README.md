@@ -4,13 +4,15 @@ Load or save your data in the JSON format.
 
 ## Quick examples
 
+These examples use `std` and `JSON` namespaces.  
+  
 Create a JSON Object, set a value then print the value
 ```cpp
-JSON::Object json;
+Object json;
 
 json["number"] = 42;
     
-std::cout << json["number"].AsNumber() << std::endl;
+cout << json["number"].AsNumber() << endl;
 ```
 
 Load an existing JSON Object, modify a value, then re-save it
@@ -18,8 +20,7 @@ Load an existing JSON Object, modify a value, then re-save it
 Object json("examples/basics_object.json");
 
 if (!json.IsValid()) {
-    cout << "json is not valid: " << json.GetError() << endl;
-    return 1;
+    // Handle error
 }
 
 json["number"] = json["number"].AsNumber() + 1;
@@ -32,8 +33,7 @@ Alternatively, you can load an Array instead of an Object
 Array json("examples/basics_array.json");
 
 if (!json.IsValid()) {
-    cout << "json is not valid: " << json.GetError() << endl;
-    return 1;
+    // Handle error
 }
 
 json[0] = json[0].AsNumber() + 1;
@@ -41,11 +41,49 @@ json[0] = json[0].AsNumber() + 1;
 json.Save("examples/basics_array_modified.json");
 ```
 
+Create a complete json, using all usable types.
+```cpp
+Object json;
+
+/* Add basic variables */
+json["number"] = 42;
+json["string"] = "hello world!";
+json["boolean"] = true;
+
+/* Add an Object and an Array */
+json.AddObject("object");
+json.AddArray("array");
+
+/* Add variables inside the Object */
+json["object"].AsObject()["number"] = -42;
+json["object"].AsObject()["string"] = "!dlrow olleh";
+json["object"].AsObject()["boolean"] = false;
+json["object"].AsObject().AddObject("object");
+json["object"].AsObject().AddArray("array");
+
+/* Add variables inside the Array */
+json["array"].AsArray().AddElement(-42);
+json["array"].AsArray().AddElement("!dlrow olleh");
+json["array"].AsArray().AddElement(false);
+json["array"].AsArray().AddObject();
+json["array"].AsArray().AddArray();
+
+/* Print each basic variables */
+cout << json["number"].AsNumber() << endl;
+cout << json["string"].AsString() << endl;
+cout << json["boolean"].AsBool() << endl;
+
+// OR
+
+/* Print the whole JSON */
+cout << json.ToString() << endl;
+```
+
 ## Installation
 
 ### Requirements
 
-- g++
+- g++ (developed with g++ (GCC) 10.2.0 on Arch Linux)
 - premake5
 - make
 
