@@ -90,10 +90,9 @@ cout << json.ToString() << endl;
 ### Steps (Linux)
 
 ```
-premake5 gmake
+premake5 gmake # if you want to generate a .so/.dll, add --kind=shared
 make
 ```
-The lib is located at bin/libjson-parser.a.  
 You can run the tests:
 ```
 premake5 tests
