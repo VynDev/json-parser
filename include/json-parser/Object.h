@@ -1,4 +1,5 @@
 #pragma once
+#include "constant.h"
 #include "Type.h"
 #include "Exception.h"
 
@@ -10,7 +11,7 @@ namespace JSON {
         public:
 
         Object() {};
-        Object(const std::string& filename);
+        Object(const std::string& filename, int mode = SOURCE::FILE);
 
         virtual std::string ToString(int indentation = 0);
         virtual bool IsObject() const override;

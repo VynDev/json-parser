@@ -84,6 +84,7 @@ namespace JSON {
         TypeAccessor operator=(int value);
         TypeAccessor operator=(double value);
         TypeAccessor operator=(bool value);
+        TypeAccessor operator=(const std::string& value);
         TypeAccessor operator=(const char* value);
 
         void Delete();

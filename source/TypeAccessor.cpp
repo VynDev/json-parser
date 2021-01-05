@@ -123,7 +123,7 @@ namespace JSON {
         return parent->AsObject()[key]; // TODO, handle this case
     }
 
-    TypeAccessor TypeAccessor::operator=(const char* value) {
+    TypeAccessor TypeAccessor::operator=(const std::string& value) {
         if (parent && parent->IsObject()) {
             if (KeyExists() && IsString()) {
                 object->AsString() = value;
@@ -142,11 +142,15 @@ namespace JSON {
                 object->AsString() = value;
             }
             else if (HasIndex() && !IsString()) {
-                parent->AsArray().Replace<String>(index, std::string(value));
+                parent->AsArray().Replace<String>(index, value);
             }
             return parent->AsArray()[index];
         }
         return parent->AsObject()[key]; // TODO, handle this case
+    }
+
+    TypeAccessor TypeAccessor::operator=(const char* value) {
+        return (*this = std::string(value));
     }
 
     void TypeAccessor::Delete() {

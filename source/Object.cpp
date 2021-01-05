@@ -14,9 +14,9 @@ using namespace std;
 
 namespace JSON {
 
-    Object::Object(const string& filename) {
+    Object::Object(const string& filename, int mode) {
         try {
-            Parser parser(filename);
+            Parser parser(filename, mode);
             parser.ParseObject(this);
         }
         catch (const Exception& e) {

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "constant.h"
 #include "Object.h"
 
 namespace JSON {
@@ -9,7 +10,7 @@ namespace JSON {
 
         public:
 
-        Parser(const std::string& filename);
+        Parser(const std::string& filename, int mode = SOURCE::FILE);
 
         bool IsObject() const {return jsonString[0] == '{';}
         bool IsArray() const {return jsonString[0] == '[';};

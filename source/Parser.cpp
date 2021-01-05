@@ -3,22 +3,27 @@
 #include <fstream>
 #include "json-parser/JSON.h"
 #include "json-parser/Parser.h"
+#include "json-parser/utils.h"
 
 using namespace std;
 
 namespace JSON {
 
-    Parser::Parser(const string& filename) : filename(filename), currentIndex(0), currentLine(1), jsonString("") {
-        ifstream file(filename);
-        if (!file)
-            throw Exception(ERRORS::CANT_OPEN_FILE, currentLine);
+    Parser::Parser(const string& filename, int mode) : filename(filename), currentIndex(0), currentLine(1), jsonString("") {
+        if (mode == SOURCE::FILE) {
+            ifstream file(filename);
+            if (!file)
+                throw Exception(ERRORS::CANT_OPEN_FILE, currentLine);
 
-        while (!file.eof()) {
-            string line;
-            getline(file, line);
-            jsonString += line + "\n";
+            while (!file.eof()) {
+                string line;
+                getline(file, line);
+                jsonString += line + "\n";
+            }
+            file.close();
+        } else if (mode == SOURCE::CONTENT) {
+            jsonString = filename;
         }
-        file.close();
     }
 
     void Parser::SkipWhiteSpaces() {
@@ -76,10 +81,14 @@ namespace JSON {
     string Parser::ParseString() {
         NextChar();
         int start = currentIndex;
-        while (CurrentChar() != '"' && !IsEnd())
+        while (CurrentChar() != '"' && !IsEnd()) {
+            if (CurrentChar() == '\\')
+                NextChar();
             NextChar();
+        }
         string value = jsonString.substr(start, currentIndex - start);
         NextChar();
+        UnescapeQuotes(&value);
         return value;
     }
 
