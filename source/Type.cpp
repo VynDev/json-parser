@@ -10,6 +10,7 @@ namespace JSON {
     bool Type::IsBool() const {return false;}
     bool Type::IsObject() const {return false;}
     bool Type::IsArray() const {return false;}
+    bool Type::IsNull() const {return false;}
 
     string& Type::AsString() {
         return *static_cast<string*>(GetValuePointer());

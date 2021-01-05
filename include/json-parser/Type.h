@@ -49,6 +49,11 @@ namespace JSON {
         virtual bool IsArray() const;
 
         /**
+         *  @return true if the value is null, false otherwise. 
+        */
+        virtual bool IsNull() const;
+
+        /**
          *  Convert the value to a <std::string>. 
          *  You must be sure the value is a <std::string> before, or it will lead to unexpected behaviors.
          *  @return a reference to the value as a <std::string>. 

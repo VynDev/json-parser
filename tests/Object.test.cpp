@@ -20,6 +20,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
 
             REQUIRE(object["hello"].AsBool() == true);
         }
@@ -33,6 +34,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
 
             REQUIRE(object["hello"].AsBool() == false);
         }
@@ -46,6 +48,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
 
             REQUIRE(object["hello"].AsNumber() == 42);
         }
@@ -59,6 +62,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
 
             REQUIRE(object["hello"].AsNumber() == 42.042);
         }
@@ -72,6 +76,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == true);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
 
             REQUIRE(object["hello"].AsString() == "world");
         }
@@ -85,6 +90,7 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == true);
             REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == false);
         }
 
         SECTION("Array") {
@@ -96,6 +102,19 @@ TEST_CASE("Object", "[object]") {
             REQUIRE(object["hello"].IsString() == false);
             REQUIRE(object["hello"].IsObject() == false);
             REQUIRE(object["hello"].IsArray() == true);
+            REQUIRE(object["hello"].IsNull() == false);
+        }
+
+        SECTION("Null") {
+            object.AddField("hello");
+            REQUIRE(object.HasKey("hello") == true);
+
+            REQUIRE(object["hello"].IsBool() == false);
+            REQUIRE(object["hello"].IsNumber() == false);
+            REQUIRE(object["hello"].IsString() == false);
+            REQUIRE(object["hello"].IsObject() == false);
+            REQUIRE(object["hello"].IsArray() == false);
+            REQUIRE(object["hello"].IsNull() == true);
         }
     }
 

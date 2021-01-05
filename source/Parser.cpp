@@ -57,6 +57,8 @@ namespace JSON {
             ParseObject(&object->AddObject(key));
         else if (CurrentChar() == '[')
             ParseArray(&object->AddArray(key));
+        else if (CurrentChar() == 'n' && ParseNull())
+            object->AddField(key);
         else
             throw Exception(ERRORS::VALUE_EXPECTED, currentLine);
             
@@ -76,6 +78,16 @@ namespace JSON {
         else
             throw Exception(ERRORS::VALUE_EXPECTED, currentLine);
             
+    }
+
+    bool Parser::ParseNull() {
+        int start = currentIndex;
+        while (isalpha(CurrentChar()))
+            NextChar();
+        string stringValue = jsonString.substr(start, currentIndex - start);
+        if (stringValue == "null")
+            return true;
+        throw Exception(ERRORS::UNKNOWN_VALUE, currentLine);
     }
 
     string Parser::ParseString() {

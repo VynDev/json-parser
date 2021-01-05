@@ -15,6 +15,7 @@ namespace JSON {
         virtual std::string ToString(int indentation = 0);
         virtual bool IsArray() const override;
 
+        void AddElement();
         void AddElement(const char* value);
         void AddElement(const std::string& value);
         void AddElement(const int value);

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 
+#include "json-parser/Null.h"
 #include "json-parser/Object.h"
 #include "json-parser/String.h"
 #include "json-parser/Bool.h"
@@ -27,6 +28,10 @@ namespace JSON {
         }
     }
 
+    void Object::AddField(const string& name) {
+        fields.insert(make_pair(name, make_unique<Null>()));
+    }
+
     void Object::AddField(const string& name, const char* value) {
         AddField(name, static_cast<string>(value));
     }
@@ -51,6 +56,7 @@ namespace JSON {
         auto pair = fields.insert(make_pair(name, make_unique<Object>()));
         return *(static_cast<Object*>(pair.first->second.get()));
     }
+
 
     string Object::ToString(int indentation) {
         if (fields.size() == 0)

@@ -43,6 +43,11 @@ namespace JSON {
         */
         bool IsArray() const;
 
+        /**
+         *  @return true if the value is null, false otherwise. 
+        */
+        bool IsNull() const;
+
         bool KeyExists() const;
         bool HasIndex() const;
 

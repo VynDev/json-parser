@@ -1,4 +1,5 @@
 #include <fstream>
+#include "json-parser/Null.h"
 #include "json-parser/Array.h"
 #include "json-parser/Object.h"
 #include "json-parser/String.h"
@@ -39,6 +40,10 @@ namespace JSON {
 
     const vector<unique_ptr<Type>> &Array::GetElements() const {
         return elements;
+    }
+
+    void Array::AddElement() {
+        elements.push_back(make_unique<Null>());
     }
 
     void Array::AddElement(const char* value) {

@@ -39,6 +39,10 @@ namespace JSON {
         return object != nullptr && object->IsArray();
     }
 
+    bool TypeAccessor::IsNull() const {
+        return object != nullptr && object->IsNull();
+    }
+
     bool TypeAccessor::KeyExists() const {
         return object != nullptr;
     }

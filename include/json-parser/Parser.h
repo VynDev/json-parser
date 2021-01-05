@@ -28,14 +28,11 @@ namespace JSON {
 
         void HandleValue(Array *array);
 
+        bool ParseNull();
         std::string ParseString();
-
         double ParseNumber();
-
         bool ParseBool();
-
         void ParseObject(Object* object);
-
         void ParseArray(Array* array);
 
         private:
