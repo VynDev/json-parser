@@ -75,3 +75,19 @@ TEST_CASE("Nested Object and Array", "[nested]") {
     REQUIRE(loadedJson.IsValid() == true);
     REQUIRE(json.ToString() == loadedJson.ToString());
 }
+
+TEST_CASE("Quotes", "[quotes]") {
+    const std::string path = "./tests/json_examples/quotes_save.json";
+    JSON::Object json;
+
+    json["text_with_quotes"] = "This is a \"text with quotes\"";
+
+    json.Save(path);
+
+    JSON::Object loadedJson(path);
+
+    REQUIRE(loadedJson.IsValid() == true);
+    REQUIRE(loadedJson.HasKey("text_with_quotes") == true);
+    REQUIRE(loadedJson["text_with_quotes"].AsString() == "This is a \"text with quotes\"");
+    REQUIRE(json.ToString() == loadedJson.ToString());
+}
